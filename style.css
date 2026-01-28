@@ -231,6 +231,84 @@ body {
 }
 
 /* ========================================
+   SCROLL INDICATOR
+   ======================================== */
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both, scrollBounce 2s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+}
+
+.scroll-indicator::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, rgba(0, 36, 156, 0.7) 0%, rgba(0, 36, 156, 0.4) 50%, transparent 70%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+}
+
+.scroll-indicator span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    color: var(--branco-tecnico);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.scroll-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-arrow svg {
+    width: 20px;
+    height: 20px;
+    color: var(--branco-tecnico);
+    opacity: 0.8;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+    50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+}
+
+/* ========================================
    LINKS / CARDS
    ======================================== */
 
@@ -529,6 +607,28 @@ body {
 .footer-dot {
     color: var(--azul-conexao);
     opacity: 0.5;
+}
+
+.footer-policy {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.policy-link {
+    font-size: 0.7rem;
+    color: var(--cinza-operacional);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.policy-link:hover {
+    opacity: 1;
+    color: var(--branco-tecnico);
+    background: rgba(var(--azul-conexao-rgb), 0.2);
 }
 
 /* ========================================

@@ -359,6 +359,35 @@
         
         // Log de inicialização
         console.log('🚀 Audicom Telecom Linktree - Inicializado');
+        
+        // Configurar scroll indicator
+        setupScrollIndicator();
+    }
+    
+    // ========================================
+    // SCROLL INDICATOR - ESCONDER AO FINAL
+    // ========================================
+    
+    function setupScrollIndicator() {
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        if (!scrollIndicator) return;
+        
+        function checkScroll() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            
+            // Esconder quando começar a rolar (após 50px de scroll)
+            if (scrollTop > 50) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
+        }
+        
+        // Verificar no scroll
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        
+        // Verificar inicialmente
+        checkScroll();
     }
     
     // Executar quando DOM estiver pronto
